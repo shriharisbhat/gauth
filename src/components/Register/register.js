@@ -15,7 +15,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 // import Background from "../assets/images/koala.jpg";
 
-function Login() {
+function Register() {
   const classes = useStyles();
 
   return (
@@ -26,9 +26,20 @@ function Login() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign Up
         </Typography>
         <form className={classes.form} noValidate>
+        <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="name"
+            label="Name"
+            name="name"
+            autoComplete="name"
+            autoFocus
+          />
           <TextField
             variant="outlined"
             margin="normal"
@@ -38,7 +49,6 @@ function Login() {
             label="Email Address"
             name="email"
             autoComplete="email"
-            autoFocus
           />
           <TextField
             variant="outlined"
@@ -65,14 +75,9 @@ function Login() {
             Submit
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
             <Grid item>
-              <Link href="/register" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link href="/login" variant="body2">
+                {"Don't have an account? Sign In"}
               </Link>
             </Grid>
           </Grid>
@@ -130,4 +135,4 @@ function Copyright() {
   );
 }
 
-export default Login;
+export default Register;

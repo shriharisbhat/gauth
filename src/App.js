@@ -5,6 +5,7 @@ import "./App.css";
 import Welcome from "./components/Welcome/welcome";
 import Login from "./components/Login/login";
 import Affiliates from "./components/Affiliates/affiliates";
+import Register from "./components/Register/register";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Switch>
         <Route path="/affiliates" component={Affiliates} />
         <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
         <Route exact path="/" component={Welcome} />
       </Switch>
     </Router>
