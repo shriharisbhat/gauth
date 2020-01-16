@@ -50,8 +50,13 @@ class Affiliates extends Component {
   render() {
     return (
       <div className="app">
-        <div className="mainContainer">
-          <p style={{ textAlign: "center" }}>Choose your partner</p>
+        <div className="mainContainer ">
+          <div className="headerContainer">
+            <p className="headerText1">SIGN IN TO UNLOCK ALL SHOWS!</p>
+            <p className="headerText2 ">
+              This service is FREE with your TV subscription
+            </p>
+          </div>
         </div>
         <div className="logoList">
           {this.state.logos.map(item => (
