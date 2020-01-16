@@ -1,49 +1,14 @@
 import React, { Component } from "react";
+
 import ShadowBox from "../../UI/ShadowBox";
+import AffiliateService from "../../utils/service/affiliatesService";
 import "./styles.scss";
 
 class Affiliates extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      logos: [
-        {
-          logo: 1,
-          id: 1,
-          client: "disovery1",
-          url: require("../../assets/discovery.jpg")
-        },
-        {
-          userId: 2,
-          id: 2,
-          client: "disovery2",
-          url: require("../../assets/discovery.jpg")
-        },
-        {
-          userId: 3,
-          id: 3,
-          client: "disovery3",
-          url: require("../../assets/discovery.jpg")
-        },
-        {
-          userId: 4,
-          id: 4,
-          client: "disovery4",
-          url: require("../../assets/discovery.jpg")
-        },
-        {
-          userId: 5,
-          id: 5,
-          client: "disovery3",
-          url: require("../../assets/discovery.jpg")
-        },
-        {
-          userId: 6,
-          id: 6,
-          client: "disovery4",
-          url: require("../../assets/discovery.jpg")
-        }
-      ]
+      logos: []
     };
   }
 
@@ -60,12 +25,26 @@ class Affiliates extends Component {
         </div>
         <div className="logoList">
           {this.state.logos.map(item => (
-            <div key={item.id}>
-              <ShadowBox logo={item.url} client={item.client} />
+            <div key={item.partner_id}>
+              <ShadowBox logo={item.logo_url} client={item.client} />
             </div>
           ))}
         </div>
       </div>
+    );
+  }
+
+  componentDidMount() {
+    AffiliateService.getAffiliateList().then(
+      response => {
+        console.log("response from affiliates", response);
+        this.setState({
+          logos: response.data
+        });
+      },
+      error => {
+        console.log("error from affiliates", error);
+      }
     );
   }
 }

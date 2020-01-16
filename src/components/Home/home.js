@@ -6,7 +6,7 @@ export class home extends Component {
     return (
       <div className="headerContainer">
         <div className="headerText">
-          <Link href="/affiliates" color="#fff">
+          <Link href="/login" color="secondary">
             {"Sign in"}
           </Link>
         </div>
