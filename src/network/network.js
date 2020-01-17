@@ -4,10 +4,9 @@ const _baseUrl = "http://demo4760291.mockable.io/";
 
 const appClient = axios.create({
   baseURL: _baseUrl,
-
   headers: {
-    "X-NLocale": "EN",
-    "X-NPlatformId": "WEB_APP"
+    "Accept-Language": "en-US",
+    "X-Device-Info": "Desktop"
   }
 });
 
@@ -38,7 +37,6 @@ const appRequest = function(options) {
 
   const onError = function(error) {
     let errorResult;
-
     console.log("error", error);
     return Promise.reject(errorResult);
   };
