@@ -9,9 +9,26 @@ class Affiliates extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      logos: []
+      affiliateList: []
     };
   }
+
+  componentDidMount() {
+    this.getAffiliateListData();
+  }
+  getAffiliateListData = () => {
+    AffiliateService.getAffiliateList().then(
+      response => {
+        console.log("response from affiliates", response);
+        this.setState({
+          affiliateList: response.data
+        });
+      },
+      error => {
+        console.log("error from affiliates", error);
+      }
+    );
+  };
 
   render() {
     return (
@@ -23,27 +40,13 @@ class Affiliates extends Component {
           </div>
         </div>
         <div className="logoList">
-          {this.state.logos.map(item => (
+          {this.state.affiliateList.map(item => (
             <div key={item.partner_id}>
               <ShadowBox logo={item.logo_url} client={item.client} />
             </div>
           ))}
         </div>
       </div>
-    );
-  }
-
-  componentDidMount() {
-    AffiliateService.getAffiliateList().then(
-      response => {
-        console.log("response from affiliates", response);
-        this.setState({
-          logos: response.data
-        });
-      },
-      error => {
-        console.log("error from affiliates", error);
-      }
     );
   }
 }
