@@ -1,10 +1,11 @@
-import * as axios from "../config/network-axios";
+import * as axios from "../network/network";
+const config = require("../config/apiConfig.json");
 
 class AffiliateService {
   static getAffiliateList(params) {
     return axios.appRequest({
       method: "get",
-      url: "http://demo4760291.mockable.io/partners",
+      url: config.affiliates.affiliates,
       params: params
     });
   }

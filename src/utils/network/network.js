@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const _baseUrl = "";
+const _baseUrl = "http://demo4760291.mockable.io/";
 
 /**
  * Create an Axios Client with defaults
@@ -19,7 +19,7 @@ const appClient = axios.create({
     "X-NPlatformId": "WEB_APP"
   }
 });
-// appClient.defaults.headers.common["Authorization"] = Keys.token;
+
 appClient.interceptors.request.use(function(config) {
   return config;
 });
