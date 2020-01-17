@@ -5,8 +5,13 @@ const ShadowBox = props => {
   console.log(props);
   return (
     <div className="card card-4">
-      <div style={{ padding: "20px" }}>
-        <img src={props.logo} alt={props.client} height="100%" width="100%" />
+      <div
+        style={{
+          paddingLeft: "10%",
+          alignSelf: "center"
+        }}
+      >
+        <img src={props.logo} alt={props.client} height="90%" width="90%" />
       </div>
     </div>
   );
