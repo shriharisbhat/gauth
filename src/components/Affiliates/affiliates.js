@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 import ShadowBox from "../../UI/ShadowBox";
-import AffiliateService from "../../utils/service/affiliatesService";
-import { Strings } from "../../utils/config/strings";
+import { AffiliateService } from "service";
+import { Strings } from "config";
 import "./styles.scss";
 
 class Affiliates extends Component {

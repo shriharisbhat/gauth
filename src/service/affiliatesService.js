@@ -11,4 +11,4 @@ class AffiliateService {
   }
 }
 
-export default AffiliateService;
+export { AffiliateService };

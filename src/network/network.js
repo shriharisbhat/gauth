@@ -2,15 +2,6 @@ import axios from "axios";
 
 const _baseUrl = "http://demo4760291.mockable.io/";
 
-/**
- * Create an Axios Client with defaults
- */
-export const GET = "GET";
-export const POST = "POST";
-export const DELETE = "DELETE";
-export const PATCH = "PATCH";
-export const PUT = "PUT";
-
 const appClient = axios.create({
   baseURL: _baseUrl,
 
