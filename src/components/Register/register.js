@@ -169,6 +169,11 @@ export class Register extends Component {
               fullWidth
               variant="contained"
               color="primary"
+              disabled={
+                this.state.email.valid && this.state.password.valid
+                  ? false
+                  : true
+              }
               className={classes.submit}
             >
               {Strings.general.signUp}
