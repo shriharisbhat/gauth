@@ -15,6 +15,9 @@ export const Strings = {
     registerLink: "Don't have an account? Sign Up",
     loginLink: "Already have an account? Sign In"
   },
+  register: {
+    LinkToSignIn: "Already have an account? Sign In"
+  },
   affiliates: {
     signInLine1: "SIGN IN TO UNLOCK ALL SHOWS!",
     signInLine2: "This service is FREE with your TV subscription"

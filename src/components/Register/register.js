@@ -200,7 +200,7 @@ export class Register extends Component {
             <Grid container>
               <Grid item>
                 <Link href="/login" variant="body2">
-                  {"Already have an account? Sign In"}
+                  {Strings.register.LinkToSignIn}
                 </Link>
               </Grid>
             </Grid>
