@@ -170,7 +170,9 @@ export class Register extends Component {
               variant="contained"
               color="primary"
               disabled={
-                this.state.email.valid && this.state.password.valid
+                this.state.fullName.valid &&
+                this.state.email.valid &&
+                this.state.password.valid
                   ? false
                   : true
               }
