@@ -143,7 +143,7 @@ export class Register extends Component {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign Up
+            {Strings.general.signUp}
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -195,7 +195,7 @@ export class Register extends Component {
               color="primary"
               className={classes.submit}
             >
-              Submit
+              {Strings.general.signUp}
             </Button>
             <Grid container>
               <Grid item>

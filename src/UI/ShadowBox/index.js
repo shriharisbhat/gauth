@@ -7,11 +7,14 @@ const ShadowBox = props => {
     <div className="card card-4">
       <div
         style={{
-          paddingLeft: "10%",
-          alignSelf: "center"
+          alignSelf: "center",
+          padding: "5%",
+
+          justifyContent: "center",
+          alignItems: "center"
         }}
       >
-        <img src={props.logo} alt={props.client} height="90%" width="90%" />
+        <img src={props.logo} alt={props.client} height="100%" width="100%" />
       </div>
     </div>
   );
