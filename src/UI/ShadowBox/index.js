@@ -9,12 +9,17 @@ const ShadowBox = props => {
         style={{
           alignSelf: "center",
           padding: "5%",
-
           justifyContent: "center",
           alignItems: "center"
         }}
       >
-        <img src={props.logo} alt={props.client} height="100%" width="100%" />
+        <img
+          src={props.logo}
+          alt={props.client}
+          height="100%"
+          width="100%"
+          className="logoImage"
+        />
       </div>
     </div>
   );
