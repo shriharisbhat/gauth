@@ -4,7 +4,7 @@ export const Strings = {
     nameLabel: "Name",
     emailLabel: "Email Address",
     passwordLabel: "Password",
-    nameErr: "Name should be more than 3 characters.",
+    fullNameErr: "Name should be more than 3 characters.",
     emailErr: "Please enter a valid email.",
     pwdErr:
       "Password must be at least 8 characters and includes 1 uppercase,1 lowercase alphabetical character and 1 numeric character.",

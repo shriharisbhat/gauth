@@ -10,7 +10,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { validateEmail, validatePassword } from "../../config/validation";
+import { checkValidity } from "../../config/validation";
 import { Strings } from "config";
 // import Background from "../assets/images/koala.jpg";
 
@@ -48,88 +48,52 @@ const styles = theme => ({
 
 export class Register extends Component {
   state = {
-    name: "",
-    email: "",
-    password: "",
-    name_err: null,
-    email_err: null,
-    pwd_err: null,
-    disabled: true
+    fullName: {
+      value: "",
+      validation: {
+        required: true,
+        minLength: 3
+      },
+      valid: false,
+      touched: false
+    },
+    email: {
+      value: "",
+      validation: {
+        required: true,
+        email: true
+      },
+      valid: false,
+      touched: false
+    },
+    password: {
+      value: "",
+      validation: {
+        required: true,
+        password: true
+      },
+      valid: false,
+      touched: false
+    }
   };
 
-  isDisabled() {
-    let nameIsValid = false;
-    let emailIsValid = false;
-    let passwordIsValid = false;
-
-    // name validation
-    if (this.state.name === "" || !this.state.name) {
-      this.setState({
-        name_err: null
-      });
-    } else {
-      if (this.state.name.length >= 3) {
-        nameIsValid = true;
-        this.setState({
-          name_err: null
-        });
-      } else {
-        this.setState({
-          name_err: "Name should be more than 3 characters."
-        });
-      }
-    }
-
-    // email validation
-    if (this.state.email === "") {
-      this.setState({
-        email_err: null
-      });
-    } else {
-      if (validateEmail.test(this.state.email)) {
-        emailIsValid = true;
-        this.setState({
-          email_err: null
-        });
-      } else {
-        this.setState({
-          email_err: Strings.loginOrRegister.emailErr
-        });
-      }
-    }
-
-    // password validation
-    if (this.state.password === "" || !this.state.password) {
-      this.setState({
-        pwd_err: null
-      });
-    } else {
-      if (validatePassword.test(this.state.password)) {
-        passwordIsValid = true;
-        this.setState({
-          pwd_err: null
-        });
-      } else {
-        this.setState({
-          pwd_err: Strings.loginOrRegister.pwdErr
-        });
-      }
-    }
-
-    if (emailIsValid && passwordIsValid && nameIsValid) {
-      this.setState({
-        disabled: false
-      });
-    }
-  }
-
   onChangeValue = (event, type) => {
-    const value = event.target.value;
-    const nextState = {};
-    nextState[type] = value;
-    this.setState(nextState, () => {
-      this.isDisabled();
-    });
+    const updatedForm = {
+      ...this.state
+    };
+
+    const updatedFormElement = {
+      ...updatedForm[type]
+    };
+
+    updatedFormElement.value = event.target.value;
+    updatedForm[type] = updatedFormElement;
+    updatedFormElement.valid = checkValidity(
+      updatedFormElement.value,
+      updatedFormElement.validation
+    );
+    updatedFormElement.touched = true;
+    this.setState({ ...updatedForm });
   };
 
   render() {
@@ -156,9 +120,13 @@ export class Register extends Component {
               name="name"
               autoComplete="name"
               autoFocus
-              error={this.state.name_err ? true : false}
-              helperText={this.state.name_err}
-              onChange={e => this.onChangeValue(e, "name")}
+              error={this.state.fullName.touched && !this.state.fullName.valid}
+              helperText={
+                this.state.fullName.touched && !this.state.fullName.valid
+                  ? Strings.loginOrRegister.fullNameErr
+                  : ""
+              }
+              onChange={e => this.onChangeValue(e, "fullName")}
             />
             <TextField
               variant="outlined"
@@ -170,8 +138,12 @@ export class Register extends Component {
               name="email"
               autoComplete="email"
               autoFocus
-              error={this.state.email_err ? true : false}
-              helperText={this.state.email_err}
+              error={this.state.email.touched && !this.state.email.valid}
+              helperText={
+                this.state.email.touched && !this.state.email.valid
+                  ? Strings.loginOrRegister.emailErr
+                  : ""
+              }
               onChange={e => this.onChangeValue(e, "email")}
             />
             <TextField
@@ -184,8 +156,12 @@ export class Register extends Component {
               type="password"
               id="password"
               autoComplete="current-password"
-              error={this.state.pwd_err ? true : false}
-              helperText={this.state.pwd_err}
+              error={this.state.password.touched && !this.state.password.valid}
+              helperText={
+                this.state.password.touched && !this.state.password.valid
+                  ? Strings.loginOrRegister.pwdErr
+                  : ""
+              }
               onChange={e => this.onChangeValue(e, "password")}
             />
             <Button
