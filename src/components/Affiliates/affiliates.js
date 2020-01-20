@@ -35,8 +35,8 @@ class Affiliates extends Component {
       <div className="app">
         <div className="mainContainer ">
           <div className="headerContainer">
-            <p className="headerText1">{Strings.affiliates.sign_in_line1}</p>
-            <p className="headerText2 ">{Strings.affiliates.sign_in_line2}</p>
+            <p className="headerText1">{Strings.affiliates.signInLine1}</p>
+            <p className="headerText2 ">{Strings.affiliates.signInLine2}</p>
           </div>
         </div>
         <div className="logoList">

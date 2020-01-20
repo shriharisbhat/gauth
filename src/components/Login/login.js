@@ -98,7 +98,7 @@ export class Login extends Component {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            {Strings.general.signIn}
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -144,14 +144,14 @@ export class Login extends Component {
               color="primary"
               className={classes.submit}
             >
-              Submit
+              {Strings.general.signIn}
             </Button>
             <Grid container>
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link href="#" variant="body2">
                   {Strings.loginOrRegister.forgetPwd}
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
                 <Link href="/register" variant="body2">
                   {Strings.loginOrRegister.registerLink}

@@ -37,6 +37,11 @@ $myColor: red;
     @include mboxshadow(3);
   }
 }
+.logoImage {
+  width: 50%;
+  margin: 0 auto;
+  display: block;
+}
 
 p {
   color: $myColor;
