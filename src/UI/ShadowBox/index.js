@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "@material-ui/core/Link";
 import "./styles.scss";
 
 const ShadowBox = props => {
@@ -13,13 +14,15 @@ const ShadowBox = props => {
           alignItems: "center"
         }}
       >
-        <img
-          src={props.logo}
-          alt={props.client}
-          height="100%"
-          width="100%"
-          className="logoImage"
-        />
+        <Link href={props.link} style={{ color: "white" }}>
+          <img
+            src={props.logo}
+            alt={props.client}
+            height="100%"
+            width="100%"
+            className="logoImage"
+          />
+        </Link>
       </div>
     </div>
   );

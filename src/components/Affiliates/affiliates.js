@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import ShadowBox from "../../UI/ShadowBox";
 import { AffiliateService } from "service";
+import * as config from "config/apiConfig.json";
 import { Strings } from "config";
 import "./styles.scss";
 
@@ -42,7 +43,11 @@ class Affiliates extends Component {
         <div className="logoList">
           {this.state.affiliateList.map(item => (
             <div key={item.partner_id}>
-              <ShadowBox logo={item.logo_url} client={item.client} />
+              <ShadowBox
+                logo={item.logo_url}
+                client={item.client}
+                link={config.affiliates.authorize}
+              />
             </div>
           ))}
         </div>
