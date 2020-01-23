@@ -2,7 +2,7 @@ import * as axios from "../network/network";
 const config = require("../config/apiConfig.json");
 
 class UserService {
-  // login
+  // login with Discovery(sonic api)
   static signIn(params) {
     return axios.appRequest({
       method: "post",
@@ -11,7 +11,7 @@ class UserService {
     });
   }
 
-  // register adn login
+  // register and login
   static signUp(params) {
     return axios.appRequest({
       method: "post",

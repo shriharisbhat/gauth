@@ -56,9 +56,12 @@ export class Login extends Component {
     this.setState({ ...updatedForm });
   };
 
-  handleLgoinClick = event => {
+  handleLoginClick = event => {
     event.preventDefault();
-    UserService.signIn().then(
+    const data = {};
+    data.username = this.state.email.value;
+    data.password = this.state.password.value;
+    UserService.signIn(data).then(
       response => {
         console.log("response from signIn", response);
       },
