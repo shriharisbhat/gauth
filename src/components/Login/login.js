@@ -12,6 +12,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { checkValidity } from "../../config/validation";
 import { Strings } from "config";
+import { UserService } from "service";
 // import Background from "../assets/images/koala.jpg";
 
 export class Login extends Component {
@@ -55,9 +56,20 @@ export class Login extends Component {
     this.setState({ ...updatedForm });
   };
 
+  handleLgoinClick = event => {
+    event.preventDefault();
+    UserService.signIn().then(
+      response => {
+        console.log("response from signIn", response);
+      },
+      error => {
+        console.log("error from sign In", error);
+      }
+    );
+  };
+
   render() {
     const { classes } = this.props;
-    console.log("updatedState", this.state);
     return (
       <Container component="main" maxWidth="xs" className={classes.background}>
         <CssBaseline />
@@ -68,7 +80,11 @@ export class Login extends Component {
           <Typography component="h1" variant="h5">
             {Strings.general.signIn}
           </Typography>
-          <form className={classes.form} noValidate>
+          <form
+            className={classes.form}
+            noValidate
+            onSubmit={this.handleLgoinClick}
+          >
             <TextField
               variant="outlined"
               margin="normal"

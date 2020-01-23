@@ -2,5 +2,9 @@
   "affiliates": {
     "affiliates": "/partners",
     "authorize": "https://go.discovery.com/"
+  },
+  "user": {
+    "login": "/login",
+    "register": ""
   }
 }
