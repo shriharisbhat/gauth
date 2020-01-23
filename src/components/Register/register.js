@@ -12,6 +12,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { checkValidity } from "../../config/validation";
 import { Strings } from "config";
+import { UserService } from "service";
 // import Background from "../assets/images/koala.jpg";
 
 const styles = theme => ({
@@ -96,6 +97,18 @@ export class Register extends Component {
     this.setState({ ...updatedForm });
   };
 
+  onRegisterClick = event => {
+    event.preventDefault();
+    UserService.signUp().then(
+      response => {
+        console.log("response from signUp", response);
+      },
+      error => {
+        console.log("error from signUp", error);
+      }
+    );
+  };
+
   render() {
     const { classes } = this.props;
     console.log("state", this.state);
@@ -109,8 +122,12 @@ export class Register extends Component {
           <Typography component="h1" variant="h5">
             {Strings.general.signUp}
           </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
+          <form
+            className={classes.form}
+            noValidate
+            onSubmit={this.onRegisterClick}
+          >
+            {/* <TextField
               variant="outlined"
               margin="normal"
               required
@@ -127,7 +144,7 @@ export class Register extends Component {
                   : ""
               }
               onChange={e => this.onChangeValue(e, "fullName")}
-            />
+            /> */}
             <TextField
               variant="outlined"
               margin="normal"
@@ -170,9 +187,8 @@ export class Register extends Component {
               variant="contained"
               color="primary"
               disabled={
-                this.state.fullName.valid &&
-                this.state.email.valid &&
-                this.state.password.valid
+                // this.state.fullName.valid &&
+                this.state.email.valid && this.state.password.valid
                   ? false
                   : true
               }

@@ -5,6 +5,6 @@
   },
   "user": {
     "login": "/login",
-    "register": ""
+    "register": "/registration/registerAndLogin"
   }
 }
