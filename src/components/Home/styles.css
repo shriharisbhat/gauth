@@ -1,9 +1,17 @@
-.headerContainer {
-  background-color: #424242;
-  padding: 5px;
+.homeHeaderContainer {
 }
 .headerText {
+  flex: 1;
+  background-color: #424242;
   text-align: center;
   color: #fff;
   font-size: 24px;
+  padding: 15px 0 15px 0;
+}
+.headerImage {
+  flex: 1;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
 }
