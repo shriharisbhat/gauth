@@ -107,6 +107,7 @@ export class Register extends Component {
         console.log("error from signUp", error);
       }
     );
+    this.myFormRef.reset();
   };
 
   render() {
@@ -126,6 +127,7 @@ export class Register extends Component {
             className={classes.form}
             noValidate
             onSubmit={this.onRegisterClick}
+            ref={el => (this.myFormRef = el)}
           >
             {/* <TextField
               variant="outlined"

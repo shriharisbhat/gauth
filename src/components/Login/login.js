@@ -69,6 +69,7 @@ export class Login extends Component {
         console.log("error from sign In", error);
       }
     );
+    this.myFormRef.reset();
   };
 
   render() {
@@ -87,6 +88,7 @@ export class Login extends Component {
             className={classes.form}
             noValidate
             onSubmit={this.handleLoginClick}
+            ref={el => (this.myFormRef = el)}
           >
             <TextField
               variant="outlined"
