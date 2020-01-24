@@ -86,7 +86,7 @@ export class Login extends Component {
           <form
             className={classes.form}
             noValidate
-            onSubmit={this.handleLgoinClick}
+            onSubmit={this.handleLoginClick}
           >
             <TextField
               variant="outlined"

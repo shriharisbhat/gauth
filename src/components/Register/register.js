@@ -153,7 +153,7 @@ export class Register extends Component {
               id="email"
               label={Strings.loginOrRegister.emailLabel}
               name="email"
-              autoComplete="email"
+              autoComplete="off"
               autoFocus
               error={this.state.email.touched && !this.state.email.valid}
               helperText={
