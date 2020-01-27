@@ -102,6 +102,7 @@ export class Register extends Component {
     UserService.signUp().then(
       response => {
         console.log("response from signUp", response);
+        alert("Registration successful");
       },
       error => {
         console.log("error from signUp", error);

@@ -15,7 +15,7 @@ class UserService {
   static signUp(params) {
     return axios.appRequest({
       method: "post",
-      url: config.user.login,
+      url: config.user.register,
       data: params
     });
   }

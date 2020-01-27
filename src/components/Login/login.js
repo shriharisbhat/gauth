@@ -63,6 +63,7 @@ export class Login extends Component {
     data.password = this.state.password.value;
     UserService.signIn(data).then(
       response => {
+        alert("Login successful");
         console.log("response from signIn", response);
       },
       error => {
