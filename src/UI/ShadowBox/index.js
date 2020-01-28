@@ -3,7 +3,6 @@ import Link from "@material-ui/core/Link";
 import "./styles.scss";
 
 const ShadowBox = props => {
-  console.log(props);
   return (
     <div className="card card-4">
       <div
@@ -14,15 +13,14 @@ const ShadowBox = props => {
           alignItems: "center"
         }}
       >
-        <Link href={props.link} style={{ color: "white" }}>
-          <img
-            src={props.logo}
-            alt={props.client}
-            height="100%"
-            width="100%"
-            className="logoImage"
-          />
-        </Link>
+        <img
+          src={props.logo}
+          alt={props.partnerId}
+          height="100%"
+          width="100%"
+          className="logoImage"
+          onClick={() => props.onClick(props.partnerId)}
+        />
       </div>
     </div>
   );

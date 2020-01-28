@@ -49,8 +49,36 @@ const appRequest = function(options) {
 
   const onError = function(error) {
     let errorResult;
+    let errorMessage = { title: "", message: {} };
     hideLoader();
     console.log("error", error);
+    if (error.response) {
+      errorResult = error.response;
+
+      errorMessage.title = "Error";
+      errorMessage.message = "Something went wrong";
+    } else if (error.request) {
+      errorResult = error.request;
+      let online = window.navigator.onLine;
+      if (online) {
+        errorMessage.title = "Error";
+        errorMessage.message = "Something went wrong";
+      } else {
+        errorMessage.title = "Error";
+        errorMessage.message = "Something went wrong";
+      }
+    } else {
+      errorResult = error.message;
+      errorMessage.title = "Error";
+      errorMessage.message = error.message;
+    }
+
+    if (errorMessage.title) {
+      //alert(errorMessage);
+      //Utils.showErrorMessage(errorMessage);
+      console.log(errorMessage);
+    }
+
     return Promise.reject(errorResult);
   };
 

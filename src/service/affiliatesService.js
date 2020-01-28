@@ -9,6 +9,13 @@ class AffiliateService {
       params: params
     });
   }
+  static getAuthorize(params) {
+    return axios.appRequest({
+      method: "get",
+      url: config.affiliates.authorize,
+      params: params
+    });
+  }
 }
 
 export { AffiliateService };
