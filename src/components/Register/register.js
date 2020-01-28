@@ -13,7 +13,7 @@ import Container from "@material-ui/core/Container";
 import { checkValidity } from "../../config/validation";
 import { Strings } from "config";
 import { UserService } from "service";
-// import Background from "../assets/images/koala.jpg";
+import ErrorHandler from "../../UI/ErrorHandler/ErrorHandler";
 
 const styles = theme => ({
   paper: {
@@ -75,7 +75,8 @@ export class Register extends Component {
       },
       valid: false,
       touched: false
-    }
+    },
+    error: null
   };
 
   onChangeValue = (event, type) => {
@@ -106,6 +107,7 @@ export class Register extends Component {
       },
       error => {
         console.log("error from signUp", error);
+        this.setState({ error });
       }
     );
     this.myFormRef.reset();
@@ -205,6 +207,7 @@ export class Register extends Component {
                   {Strings.register.LinkToSignIn}
                 </Link>
               </Grid>
+              {this.state.error && <ErrorHandler error={this.state.error} />}
             </Grid>
           </form>
         </div>

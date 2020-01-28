@@ -5,12 +5,14 @@ import { AffiliateService } from "service";
 import * as config from "config/apiConfig.json";
 import { Strings } from "config";
 import "./styles.scss";
+import ErrorHandler from "../../UI/ErrorHandler/ErrorHandler";
 
 class Affiliates extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      affiliateList: []
+      affiliateList: [],
+      error: null
     };
   }
 
@@ -27,6 +29,7 @@ class Affiliates extends Component {
       },
       error => {
         console.log("error from affiliates", error);
+        this.setState({ error });
       }
     );
   };
@@ -41,6 +44,7 @@ class Affiliates extends Component {
           </div>
         </div>
         <div className="logoList">
+          {this.state.error && <ErrorHandler error={this.state.error} />}
           {this.state.affiliateList.map(item => (
             <div key={item.partner_id}>
               <ShadowBox
