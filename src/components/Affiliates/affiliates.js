@@ -23,13 +23,28 @@ class Affiliates extends Component {
     AffiliateService.getAffiliateList().then(
       response => {
         console.log("response from affiliates", response);
-        this.setState({
-          affiliateList: response.data
-        });
+        if (response.data)
+          this.setState({
+            affiliateList: response.data
+          });
       },
       error => {
         console.log("error from affiliates", error);
         this.setState({ error });
+      }
+    );
+  };
+
+  callAuthorize = partnerId => {
+    const data = {};
+    data.partnerId = partnerId;
+    AffiliateService.getAuthorize(data).then(
+      response => {
+        if (response.data && response.data.location)
+          window.location.href = response.data.location;
+      },
+      error => {
+        console.log("error from Authorize", error);
       }
     );
   };
@@ -49,8 +64,9 @@ class Affiliates extends Component {
             <div key={item.partner_id}>
               <ShadowBox
                 logo={item.logo_url}
-                client={item.client}
+                partnerId={item.partner_id}
                 link={config.affiliates.authorize}
+                onClick={this.callAuthorize}
               />
             </div>
           ))}

@@ -1,7 +1,7 @@
 {
   "affiliates": {
     "affiliates": "/partners",
-    "authorize": "https://go.discovery.com/"
+    "authorize": "authorize"
   },
   "user": {
     "login": "/login",

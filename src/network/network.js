@@ -74,8 +74,7 @@ const appRequest = function(options) {
     }
 
     if (errorMessage.title) {
-      console.log("error ikn", errorMessage);
-      // alert(errorMessage.message);
+      console.log(errorMessage);
     }
 
     return Promise.reject(errorResult);
