@@ -53,3 +53,4 @@ export default function SimpleModal(props) {
     </div>
   );
 }
+SimpleModal.defaultProps = { error: {} };
