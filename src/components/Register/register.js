@@ -115,7 +115,6 @@ export class Register extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log("state", this.state);
     return (
       <Container component="main" maxWidth="xs" className={classes.background}>
         <CssBaseline />
