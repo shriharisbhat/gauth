@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import ShadowBox from "../../UI/ShadowBox";
-import { AffiliateService } from "service";
+import AffiliateService from "./../../service/affiliatesService";
 import * as config from "config/apiConfig.json";
 import { Strings } from "config";
 import "./styles.scss";
@@ -12,39 +12,42 @@ class Affiliates extends Component {
     super(props);
     this.state = {
       affiliateList: [],
-      error: null
+      error: null,
+      location: null
     };
   }
 
   componentDidMount() {
     this.getAffiliateListData();
   }
-  getAffiliateListData = () => {
-    AffiliateService.getAffiliateList().then(
+  async getAffiliateListData() {
+    await AffiliateService.getAffiliateList().then(
       response => {
-        console.log("response from affiliates", response);
-        if (response.data)
+        if (response && response.data)
           this.setState({
             affiliateList: response.data
           });
       },
       error => {
-        console.log("error from affiliates", error);
         this.setState({ error });
       }
     );
-  };
+  }
 
-  callAuthorize = partnerId => {
+  callAuthorize = async partnerId => {
     const data = {};
     data.partnerId = partnerId;
-    AffiliateService.getAuthorize(data).then(
+    await AffiliateService.getAuthorize(data).then(
       response => {
-        if (response.data && response.data.location)
+        if (response && response.data) {
+          this.setState({
+            location: response.data.location
+          });
           window.location.href = response.data.location;
+        }
       },
       error => {
-        console.log("error from Authorize", error);
+        this.setState({ error });
       }
     );
   };
@@ -61,12 +64,13 @@ class Affiliates extends Component {
         <div className="logoList">
           {this.state.error && <ErrorHandler error={this.state.error} />}
           {this.state.affiliateList.map(item => (
-            <div key={item.partner_id}>
+            <div key={item.partner_id} id="logo">
               <ShadowBox
                 logo={item.logo_url}
                 partnerId={item.partner_id}
                 link={config.affiliates.authorize}
                 onClick={this.callAuthorize}
+                testID={"logo"}
               />
             </div>
           ))}

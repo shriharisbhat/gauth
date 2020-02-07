@@ -1,7 +1,7 @@
 import * as axios from "../network/network";
 const config = require("../config/apiConfig.json");
 
-class AffiliateService {
+export class AffiliateService {
   static getAffiliateList(params) {
     return axios.appRequest({
       method: "get",
@@ -18,4 +18,4 @@ class AffiliateService {
   }
 }
 
-export { AffiliateService };
+export default AffiliateService;

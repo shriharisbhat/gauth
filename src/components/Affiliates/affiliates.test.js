@@ -1,52 +1,113 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import Affiliates from "./Affiliates";
-//jest.mock("axios");
+import ShadowBox from "../../UI/ShadowBox";
 
-import axios from "axios";
-import nock from "nock";
-//import test from "ava"; // You can use any test framework.
+const mockAffiliateList = require("./../../__mocks__/affiliates.json");
+function mockAffiliatesService() {
+  const mockAffiliateList = require("./../../__mocks__/affiliates.json");
+  return {
+    // ...originalAffiliateService,
+    getAffiliateList: jest
+      .fn()
+      .mockReturnValueOnce(
+        new Promise((resolve, reject) => {
+          reject({ error: "Something went wrong" });
+        })
+      )
+      .mockReturnValue(
+        new Promise((resolve, reject) => {
+          resolve(mockAffiliateList);
+        })
+      ),
+    getAuthorize: jest
+      .fn()
+      .mockReturnValueOnce(
+        new Promise((resolve, reject) => {
+          reject({ error: "Something went wrong" });
+        })
+      )
+      .mockReturnValue(
+        new Promise((resolve, reject) => {
+          resolve({
+            data: { location: "https://go.discovery.com/" }
+          });
+        })
+      )
+  };
+}
+jest.mock("./../../service/affiliatesService", () => mockAffiliatesService());
 
-describe("Affiliates", () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = mount(<Affiliates />);
+describe("Affiliates - testing getAffiliateListData API - ", () => {
+  it("should fetch affiliates list - error case", async () => {
+    const wrapper = shallow(<Affiliates />);
+    const instance = wrapper.instance();
+    expect.assertions(1);
+    await instance.getAffiliateListData();
+    expect(wrapper.state().error).toMatchObject({
+      error: "Something went wrong"
+    });
   });
 
+  it("should fetch affiliates list - success case", async () => {
+    const wrapper = shallow(<Affiliates />);
+    const instance = wrapper.instance();
+    expect.assertions(1);
+    await instance.getAffiliateListData();
+    const testData = [mockAffiliateList.data[0], mockAffiliateList.data[1]];
+    expect(wrapper.state().affiliateList).toMatchObject(testData);
+  });
+});
+
+describe("Affiliates - testing callAuthorize API  ", () => {
+  it("should call callAuthorize - error case", async () => {
+    const wrapper = shallow(<Affiliates />);
+    const instance = wrapper.instance();
+    expect.assertions(1);
+    await instance.callAuthorize(1);
+    expect(wrapper.state().error).toMatchObject({
+      error: "Something went wrong"
+    });
+  });
+
+  it("should call callAuthorize - success case", async () => {
+    const wrapper = shallow(<Affiliates />);
+    const instance = wrapper.instance();
+    expect.assertions(1);
+    await instance.callAuthorize(1);
+    expect(wrapper.state().location).toEqual("https://go.discovery.com/");
+  });
+});
+
+describe("Affiliates", () => {
   it("should render Affiliates component ", () => {
+    const wrapper = mount(<Affiliates />);
     expect(wrapper.exists()).toBe(true);
   });
 
   it("should initilize state values properly", () => {
-    expect(wrapper.state()).toEqual({ affiliateList: [], error: null });
+    const wrapper = mount(<Affiliates />);
+    expect(wrapper.state()).toEqual({
+      affiliateList: [],
+      error: null,
+      location: null
+    });
   });
 
-  // test("should fetch affiliates", () => {
-  //   //const users = [{name: 'Bob'}];
-  //   const config = [];
-  //   const resp = { data: users };
-
-  //   //axios.get.mockResolvedValue(resp);
-
-  //   // or you could use the following depending on your use case:
-  //   axios.get.mockImplementation(() => Promise.resolve(resp));
-
-  //   return AffiliateService.getAffiliateList().then(data =>
-  //     expect(data).toEqual(users)
-  //   );
-  // });
-
-  axios.defaults.adapter = require("axios/lib/adapters/http");
-  jest.setTimeout(2000);
-  it("can fetch test response", async t => {
-    // Set up the mock request.
-    const scope = nock("http://demo4760291.mockable.io")
-      .get("/partners")
-      .reply(200, "{data:{}}");
-
-    await axios.get("http://demo4760291.mockable.io/partners");
-
-    // Assert that the expected request was made.
-    scope.done();
+  it("should call  getAffiliateListData", () => {
+    const wrapper = shallow(<Affiliates />);
+    const instance = wrapper.instance();
+    let spy = jest.spyOn(instance, "getAffiliateListData");
+    instance.componentDidMount();
+    expect(instance.getAffiliateListData).toHaveBeenCalled();
+  });
+});
+describe("Affiliates", () => {
+  it("should call  callAuthorize", () => {
+    const wrapper = shallow(<Affiliates />);
+    const instance = wrapper.instance();
+    let spy = jest.spyOn(instance, "callAuthorize");
+    instance.callAuthorize();
+    expect(instance.callAuthorize).toHaveBeenCalled();
   });
 });
