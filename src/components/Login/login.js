@@ -14,7 +14,8 @@ import { checkValidity } from "../../config/validation";
 import { Strings } from "config";
 import { UserService } from "service";
 import ErrorHandler from "../../UI/ErrorHandler/ErrorHandler";
-export class Login extends Component {
+
+class Login extends Component {
   state = {
     email: {
       value: "",
@@ -56,12 +57,13 @@ export class Login extends Component {
     this.setState({ ...updatedForm });
   };
 
-  handleLoginClick = event => {
-    event.preventDefault();
+  handleLoginClick = async () => {
+    console.log("I am here...");
+    //event.preventDefault();
     const data = {};
     data.username = this.state.email.value;
     data.password = this.state.password.value;
-    UserService.signIn(data).then(
+    await UserService.signIn(data).then(
       response => {
         alert("Login successful");
         console.log("response from signIn", response);

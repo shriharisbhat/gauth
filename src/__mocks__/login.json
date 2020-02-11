@@ -1,0 +1,11 @@
+{
+  "data": {
+    "id": "token-aaaaaaaa-efa5-4b51-9374-558d27d432aa",
+    "type": "token",
+    "attributes": {
+      "token": "eyJhbGciOiJIUzI.eyJpYXQiOjE0MTY5MjkxMDksImp0aSI.XCEwpBGvOLma4T",
+      "realm": "dplayit",
+      "lastLoginTime": "2017-02-02T15:54:57Z"
+    }
+  }
+}

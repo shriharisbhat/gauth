@@ -43,7 +43,9 @@ class Affiliates extends Component {
           this.setState({
             location: response.data.location
           });
-          window.location.href = response.data.location;
+          // below location.href is not working for unit testing.
+          //window.location.href = response.data.location;
+          window.location.assign(response.data.location);
         }
       },
       error => {
