@@ -1,50 +1,34 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import Login from "./login";
-import { TextField } from "@material-ui/core";
-import { act } from "react-dom/test-utils";
-// // Username input text test
-// test("Username input text", () => {
-//   const wrapper = shallow(<Login />);
+import { render, fireEvent } from "@testing-library/react";
 
-//   wrapper.find('input[type="text"]').simulate("change", {
-//     target: { name: "username", value: "shrihari" }
-//   });
-//   expect(wrapper.state("username")).toEqual("shrihari");
-// });
 describe("Login component", () => {
-  test("Password input text", () => {
-    const wrapper = mount(<Login />);
-    //   expect(wrapper.find(TextField).defaultValue()).toEqual("");
-    console.log(
-      wrapper
-        .find(TextField)
-        .at(1)
-        .debug()
-    );
+  // Password input text test
+  it("should show error when nothing entered", () => {
+    const { getByTestId } = render(<Login />);
+    // const output = getByTestId("output");
+    const emailInput = getByTestId("emailInput");
+    const submit = getByTestId("submit");
+
+    expect(emailInput).toBeEmpty("");
+    expect(emailInput).toHaveValue("");
+    fireEvent.change(emailInput, { target: { value: "Sama@gmail.com" } });
+    fireEvent.click(submit);
+    expect(emailInput).toHaveValue("Sama@gmail.com");
   });
 
+  // Password input text test
   it("should show error when nothing entered", () => {
-    const wrapper = mount(<Login />);
-    act(() => {
-      wrapper
-        .find(TextField)
-        .at(1)
-        .simulate("change", { target: { value: "123" } });
-    });
-    wrapper.update();
-    expect(
-      wrapper
-        .find(TextField)
-        .at(1)
-        .props().error
-    ).toBe(true);
-    expect(
-      wrapper
-        .find(TextField)
-        .at(1)
-        .props().helperText
-    ).toBe("Wrong Name format.");
+    const { getByTestId } = render(<Login />);
+    // const output = getByTestId("output");
+    const pwdInput = getByTestId("pwdInput");
+    const submit = getByTestId("submit");
+
+    expect(pwdInput).toBeEmpty("");
+    expect(pwdInput).toHaveValue("");
+    fireEvent.change(pwdInput, { target: { value: "Sama" } });
+    fireEvent.click(submit);
+    expect(pwdInput).toHaveValue("Sama");
   });
 });
-// Password input text test

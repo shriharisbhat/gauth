@@ -104,6 +104,9 @@ class Login extends Component {
               name="email"
               autoComplete="off"
               autoFocus
+              inputProps={{
+                "data-testid": "emailInput"
+              }}
               error={this.state.email.touched && !this.state.email.valid}
               helperText={
                 this.state.email.touched && !this.state.email.valid
@@ -122,6 +125,9 @@ class Login extends Component {
               type="password"
               id="password"
               autoComplete="current-password"
+              inputProps={{
+                "data-testid": "pwdInput"
+              }}
               error={this.state.password.touched && !this.state.password.valid}
               helperText={
                 this.state.password.touched && !this.state.password.valid
@@ -135,6 +141,7 @@ class Login extends Component {
               fullWidth
               variant="contained"
               color="primary"
+              data-testid="submit"
               disabled={
                 this.state.email.valid && this.state.password.valid
                   ? false
