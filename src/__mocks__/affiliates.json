@@ -1,18 +1,18 @@
-{
-  "data": [
-    {
-      "name": "DIRECTV",
-      "logo_url": "https://api.discovery.com/v1/images/57a368ff6b66d1cd0345eed1?aspectRatio=original&width=672&height=190&key=3020a40c2356a645b4b4",
-      "home_url": "https://www.website.com/",
-      "display_priority": 1,
-      "partner_id": "57a9eb816b66d14b2ff8aedc"
-    },
-    {
-      "name": "DISH",
-      "logo_url": "https://api.discovery.com/v1/images/5a90624a6b66d1044815f0fa?aspectRatio=original&width=227&height=132&key=3020a40c2356a645b4b4",
-      "home_url": "https://www.website.com/",
-      "display_priority": 2,
-      "partner_id": "5a9052b46b66d103ef3b2984"
-    }
-  ]
-}
+[
+  {
+    "id": "948ac1ad-3c46-4f04-a172-1eadba309213",
+    "name": "Sappa",
+    "logo_url": "https://www.sappa.se/images/sappa_logo.png",
+    "help_url": "",
+    "home_url": "https://www.sappa.se/",
+    "display_priority": 3
+  },
+  {
+    "id": "879d5be3753742b0ad25003f",
+    "name": "WAOO",
+    "logo_url": "https://www.waoo.dk/dist/images/waoo-logo-orange.png",
+    "help_url": "",
+    "home_url": "https://www.waoo.dk/",
+    "display_priority": 9
+  }
+]

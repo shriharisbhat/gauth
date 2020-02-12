@@ -54,7 +54,7 @@ describe("Affiliates - testing getAffiliateListData API - ", () => {
     const instance = wrapper.instance();
     expect.assertions(1);
     await instance.getAffiliateListData();
-    const testData = [mockAffiliateList.data[0], mockAffiliateList.data[1]];
+    const testData = [mockAffiliateList[0], mockAffiliateList[1]];
     expect(wrapper.state().affiliateList).toMatchObject(testData);
   });
 });
@@ -77,7 +77,7 @@ describe("Affiliates - testing callAuthorize API  ", () => {
     await instance.callAuthorize(1);
     // expect(wrapper.state().location).toEqual("https://go.discovery.com/");
     jest.spyOn(window.location, "assign").mockImplementation(l => {
-      expect(l).toEqual("https://go.discovery.com/");
+      expect(l).toEqual("https://sonic-test.disco-api.com");
     });
     window.location.assign.mockClear();
   });
