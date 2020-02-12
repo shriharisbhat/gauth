@@ -1,12 +1,12 @@
 import * as axios from "../network/network";
 const config = require("../config/apiConfig.json");
 
-class UserService {
+export class UserService {
   // login with Discovery(sonic api)
   static signIn(params) {
     return axios.appRequest({
       method: "post",
-      url: config.user.login,
+      url: "http://demo4760291.mockable.io/" + config.user.login,
       data: params
     });
   }
@@ -15,10 +15,10 @@ class UserService {
   static signUp(params) {
     return axios.appRequest({
       method: "post",
-      url: config.user.register,
+      url: "http://demo4760291.mockable.io/" + config.user.register,
       data: params
     });
   }
 }
 
-export { UserService };
+export default UserService;

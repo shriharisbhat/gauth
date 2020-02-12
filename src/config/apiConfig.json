@@ -6,5 +6,10 @@
   "user": {
     "login": "/login",
     "register": "/registration/registerAndLogin"
+  },
+  "general": {
+    "baseUrl": "https://sonic-test.disco-api.com/gauth/broker",
+    "brandId": "53fd7d5f-470c-4594-b886-8bdfaa94a398",
+    "redirectUrl": "http://localhost"
   }
 }

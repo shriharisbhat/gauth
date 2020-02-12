@@ -18,14 +18,16 @@ class Affiliates extends Component {
   }
 
   componentDidMount() {
-    this.getAffiliateListData();
+    const data = {};
+    data.brand_id = config.general.brandId;
+    this.getAffiliateListData(data);
   }
-  async getAffiliateListData() {
-    await AffiliateService.getAffiliateList().then(
+  async getAffiliateListData(data) {
+    await AffiliateService.getAffiliateList(data).then(
       response => {
-        if (response && response.data)
+        if (response)
           this.setState({
-            affiliateList: response.data
+            affiliateList: response
           });
       },
       error => {
@@ -36,16 +38,18 @@ class Affiliates extends Component {
 
   callAuthorize = async partnerId => {
     const data = {};
-    data.partnerId = partnerId;
+    data.partner_id = partnerId;
+    data.brand_id = config.general.brandId;
+    data.redirect_url = config.general.redirectUrl;
     await AffiliateService.getAuthorize(data).then(
       response => {
-        if (response && response.data) {
+        if (response) {
           this.setState({
-            location: response.data.location
+            location: response.location
           });
           // below location.href is not working for unit testing.
           //window.location.href = response.data.location;
-          window.location.assign(response.data.location);
+          window.location.assign(response.location);
         }
       },
       error => {
@@ -66,11 +70,10 @@ class Affiliates extends Component {
         <div className="logoList">
           {this.state.error && <ErrorHandler error={this.state.error} />}
           {this.state.affiliateList.map(item => (
-            <div key={item.partner_id} id="logo">
+            <div key={item.id} id="logo">
               <ShadowBox
                 logo={item.logo_url}
-                partnerId={item.partner_id}
-                link={config.affiliates.authorize}
+                partnerId={item.id}
                 onClick={this.callAuthorize}
                 testID={"logo"}
               />

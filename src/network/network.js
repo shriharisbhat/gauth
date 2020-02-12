@@ -1,14 +1,16 @@
 import axios from "axios";
 import Utils from "utils/utils";
+const config = require("../config/apiConfig.json");
 
-const _baseUrl = "http://demo4760291.mockable.io/";
+const _baseUrl = config.general.baseUrl;
 var requestCount = 0;
 
 const appClient = axios.create({
   baseURL: _baseUrl,
   headers: {
     "Accept-Language": "en-US",
-    "X-Device-Info": "Desktop"
+    "X-Device-Info":
+      "DGO-Android/2.0.5 (Samsung/SM-P205; Android/8.1.0; 60cc90054e2d22d7/d06c34d5fa5f5bd74bc81)"
   }
 });
 
