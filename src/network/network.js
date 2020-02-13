@@ -10,7 +10,7 @@ const appClient = axios.create({
   headers: {
     "Accept-Language": "en-US",
     "X-Device-Info":
-      "DGO-Android/2.0.5 (Samsung/SM-P205; Android/8.1.0; 60cc90054e2d22d7/d06c34d5fa5f5bd74bc81)"
+      "DGO-Android/2.0.5 (Samsung/SM-P205; Android/8.1.0; 60cc90054e2d22d7/52c331b44ffec2bfc5ab)"
   }
 });
 
